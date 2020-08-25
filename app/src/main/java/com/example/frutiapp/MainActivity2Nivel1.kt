@@ -50,7 +50,7 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
 
         numAleAtorio()
 
-// i have added toas
+// i have added toast
         Toast.makeText(this, "Nivel 1 - Sumas basicas", Toast.LENGTH_SHORT).show()
 
     }
