@@ -100,6 +100,19 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+    //Metodo iniciar la canción
+    override fun onResume() {
+        super.onResume()
+        mp.start()
+    }
+//Metodo para pausar la cación cuando salgamos
+    override fun onPause() {
+        super.onPause()
+        mp.pause()
+    }
+
+
+
     //metodo para controlar el boton atras del telefono
     override fun onBackPressed() {
         Toast.makeText(this, "Metodo para controlar el boton", Toast.LENGTH_SHORT).show()

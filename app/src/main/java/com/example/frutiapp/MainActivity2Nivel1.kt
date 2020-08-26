@@ -179,6 +179,16 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        mp.start()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        mp.pause()
+    }
+
     override fun onBackPressed() {
 
     }
