@@ -1,11 +1,11 @@
 package com.example.frutiapp
 
+import android.content.ContentValues
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.IntegerRes
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main_activity2_nivel1.*
 
@@ -17,7 +17,7 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
     var resultado: Int = 0
     var vidas: Int = 3
 
-    //var nombre_jugador: String? = null
+    var nombre_jugador: String? = null
     var string_score: kotlin.String? = null
     var string_vidas: kotlin.String? = null
 
@@ -52,7 +52,7 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
 
         numAleAtorio()
 
-// i have added toas
+// i have added toast
         Toast.makeText(this, "Nivel 1 - Sumas basicas", Toast.LENGTH_SHORT).show()
 
     }
@@ -70,11 +70,16 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
                 textViewScore.text = ("Score: $score")
                 //limpiar el campo
                 editTextNumberResult.setText("")
+                BaseDeDatos()
+
+
             } else {
 
                 mp_bad.start()
                 //Metodo para decrementar las vidas
                 vidas--
+                BaseDeDatos()
+
 
                 when (vidas) {
                     3 -> imageViewVidas.setImageResource(R.drawable.unavida)
@@ -91,7 +96,7 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
 
                     else ->{
                         Toast.makeText(this, "has perdido todas tus manzanas", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this,MainActivity::class.java)
+                        val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                         finish()
                         mp.stop()
@@ -145,5 +150,36 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
             mp.stop()
             mp.release()
         }
+    }
+     fun BaseDeDatos() {
+        val admin = AdminSQLiteOpenHelper(this, "BD", null, 1)
+        val BD = admin.writableDatabase
+        val consulta= BD.rawQuery(
+            "select * from puntaje where score = (select max(score) from puntaje)",
+            null
+        )
+        if (consulta.moveToFirst()) {
+         //   val temp_nombre: String = consulta.getString(0)
+            val temp_score: String = consulta.getString(1)
+            val bestScore = temp_score.toInt()
+          //  val bestScore = temp_nombre.toInt()
+            if (score > bestScore) {
+                val modificacion = ContentValues()
+                modificacion.put("nombre", nombre_jugador)
+                modificacion.put("score", score)
+                BD.update("puntaje", modificacion, "score=$bestScore", null)
+            }
+            BD.close()
+        } else {
+            val insertar = ContentValues()
+            insertar.put("nombre", nombre_jugador)
+            insertar.put("score", score)
+            BD.insert("puntaje", null, insertar)
+            BD.close()
+        }
+    }
+
+    override fun onBackPressed() {
+
     }
 }
