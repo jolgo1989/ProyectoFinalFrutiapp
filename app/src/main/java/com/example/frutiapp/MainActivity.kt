@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                             imageViewPersonaje.setImageResource(id)
                         }
 
-        //Metodo para llamar la base de datos
+        //Metodo para llamar la base de dato
         val admin = AdminSQLiteOpenHelper(this, "BD",null,1)
         //Metodo para abrir la base de datos
         val BD = admin.writableDatabase
