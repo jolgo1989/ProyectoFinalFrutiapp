@@ -19,7 +19,7 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
 
 
 
-   // var nombre_jugador: String? = null
+    var nombre_jugador: String? = null
     var string_score: kotlin.String? = null
     var string_vidas: kotlin.String? = null
 
@@ -36,8 +36,8 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
         setContentView(R.layout.activity_main_activity2_nivel1)
 
         val intent = intent
-        val name = intent.getStringExtra("Clave")
-        textViewNombre.text = ("Jugador: $name")
+        nombre_jugador = intent.getStringExtra("Clave")
+        textViewNombre.text = ("Jugador: $nombre_jugador")
 
         //Metodo para mostrar icono en acction bar
         supportActionBar?.setDisplayShowHomeEnabled(true)
@@ -169,7 +169,7 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
 
             if (score > bestScore) {
                 val modificacion = ContentValues()
-                modificacion.put("nombre",  textViewNombre.text.toString())
+                modificacion.put("nombre",  nombre_jugador)
                 modificacion.put("score", score)
                 BD.update("puntaje", modificacion, "score=$bestScore", null)
 
@@ -178,7 +178,7 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
         } else {
 
             val insertar = ContentValues()
-            insertar.put("nombre",  textViewNombre.text.toString())
+            insertar.put("nombre",  nombre_jugador)
             insertar.put("score", score)
             BD.insert("puntaje", null, insertar)
             BD.close()
