@@ -100,7 +100,7 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
-    //Metodo iniciar la canción
+    //Metodo iniciar la canción cuando abramos la app
     override fun onResume() {
         super.onResume()
         mp.start()
