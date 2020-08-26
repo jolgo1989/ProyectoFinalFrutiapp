@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity2Nivel1::class.java)
             intent.putExtra("Clave", nombre)
             startActivity(intent)
+            finish()
         } else {
             Toast.makeText(this, "Debe escribir su nombre", Toast.LENGTH_SHORT).show()
 

@@ -3,7 +3,9 @@ package com.example.frutiapp
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.annotation.IntegerRes
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main_activity2_nivel1.*
 
@@ -55,8 +57,62 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
 
     }
 
+    fun comparar(view: View) {
+        val respuesta = editTextNumberResult.text.toString()
+        if (respuesta != "") {
+
+            val respuestaJugador = Integer.parseInt(respuesta)
+
+            if (resultado == respuestaJugador) {
+                mp_great.start()
+                //Metodo para aunmentar el score
+                score++
+                textViewScore.text = ("Score: $score")
+                //limpiar el campo
+                editTextNumberResult.setText("")
+            } else {
+
+                mp_bad.start()
+                //Metodo para decrementar las vidas
+                vidas--
+
+                when (vidas) {
+                    3 -> imageViewVidas.setImageResource(R.drawable.unavida)
+
+                    2 -> {
+                        imageViewVidas.setImageResource(R.drawable.dosvidas)
+                        Toast.makeText(this, "te quedan 2 manzanas", Toast.LENGTH_SHORT).show()
+                    }
+
+                    1 -> {
+                        imageViewVidas.setImageResource(R.drawable.unavida)
+                        Toast.makeText(this, "te quedan 1 manzanas", Toast.LENGTH_SHORT).show()
+                    }
+
+                    else ->{
+                        Toast.makeText(this, "has perdido todas tus manzanas", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this,MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        mp.stop()
+                        mp.release()
+
+                    }
+
+                }
+                editTextNumberResult.setText("")
+            }
+
+            numAleAtorio()
+
+
+        } else {
+            Toast.makeText(this, "Debes escribir tu respuesta", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     // Metodo para pasar al siguiente nivel
-     fun numAleAtorio() {
+    fun numAleAtorio() {
 
         if (score <= 9) {
             numAleatorio_uno = (Math.random() * 10).toInt()
@@ -66,7 +122,7 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
 //Metodo para cambiar las imagenes del imageview
             if (resultado <= 10) {
                 for (i in numero.indices) {
-                    val id = resources.getIdentifier(numero[i],"drawable", packageName)
+                    val id = resources.getIdentifier(numero[i], "drawable", packageName)
                     if (numAleatorio_uno == i) {
                         imageViewnumber1.setImageResource(id)
                     }
