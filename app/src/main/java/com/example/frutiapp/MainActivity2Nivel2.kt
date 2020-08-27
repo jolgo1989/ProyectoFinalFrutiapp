@@ -43,7 +43,7 @@ class MainActivity2Nivel2 : AppCompatActivity() {
         nombre_jugador = intent.getStringExtra("jugador")
         textViewNombre.text = nombre_jugador.toString()
 
-//Metodo para recuperar el score
+/* Metodo para recuperar el score */
         string_score = getIntent().getStringExtra("score");
         score = Integer.parseInt(string_score)
         textViewScore.text = ("Score: $score")
