@@ -2,7 +2,6 @@ package com.example.frutiapp
 
 import android.app.Activity
 import android.content.Intent
-import android.database.Cursor
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.View
@@ -50,12 +49,12 @@ class MainActivity : AppCompatActivity() {
                         }
 
         //Metodo para llamar la base de datos
-        val admin = AdminSQLiteOpenHelper(this, "BD",null,1)
+        val admin = AdminSQLiteOpenHelper(this, "BD", null, 1)
         //Metodo para abrir la base de datos
         val BD = admin.writableDatabase
         //Metodo para consultar
         val consulta = BD.rawQuery(
-            "select * from puntaje where score = (select max(score) from puntaje)",null
+            "select * from puntaje where score = (select max(score) from puntaje)", null
         )
         //Metodo para consultar si existen datos
         if (consulta.moveToFirst()){
@@ -86,7 +85,7 @@ class MainActivity : AppCompatActivity() {
             mp.release()
 
             val intent = Intent(this, MainActivity2Nivel1::class.java)
-            intent.putExtra("Clave", nombre)
+            intent.putExtra("jugador", nombre)
             startActivity(intent)
             finish()
         } else {

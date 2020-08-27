@@ -11,17 +11,16 @@ import kotlinx.android.synthetic.main.activity_main_activity2_nivel1.*
 
 
 open class MainActivity2Nivel1 : AppCompatActivity() {
+
     var score = 0
     var numAleatorio_uno: Int = 0
     var numAleatorio_dos: Int = 0
     var resultado: Int = 0
     var vidas: Int = 3
 
-
-
     var nombre_jugador: String? = null
-    var string_score: kotlin.String? = null
-    var string_vidas: kotlin.String? = null
+    var string_score: String? = null
+    var string_vidas: String? = null
 
     lateinit var mp: MediaPlayer
     lateinit var mp_great: MediaPlayer
@@ -35,8 +34,8 @@ open class MainActivity2Nivel1 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_activity2_nivel1)
 
-        val intent = intent
-        nombre_jugador = intent.getStringExtra("Clave")
+
+        nombre_jugador = intent.getStringExtra("jugador")
         textViewNombre.text = ("Jugador: $nombre_jugador")
 
         //Metodo para mostrar icono en acction bar
