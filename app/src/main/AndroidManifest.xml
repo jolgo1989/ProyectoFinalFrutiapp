@@ -15,7 +15,6 @@
         <activity
             android:name=".MainActivity2Nivel5"
             android:configChanges="orientation|screenSize" />
-        <!--Metodo para evitar que el juego se reinicie al rotarlo -->
         <activity
             android:name=".MainActivity2Nivel4"
             android:configChanges="orientation|screenSize" />
@@ -31,6 +30,7 @@
 
         <activity android:name=".MainActivity"
             android:configChanges="orientation|screenSize" >
+            <!--Metodo para evitar que el juego se reinicie al rotarlo -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
