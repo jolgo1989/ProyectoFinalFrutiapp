@@ -9,19 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity2Nivel6"></activity>
-        <activity android:name=".MainActivity2Nivel5" />
-        <activity android:name=".MainActivity2Nivel4" />
-        <activity android:name=".MainActivity2Nivel3" />
-        <activity android:name=".MainActivity2Nivel2" />
+        <activity
+            android:name=".MainActivity2Nivel6"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".MainActivity2Nivel5"
+            android:configChanges="orientation|screenSize" />
+        <!--Metodo para evitar que el juego se reinicie al rotarlo -->
+        <activity
+            android:name=".MainActivity2Nivel4"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".MainActivity2Nivel3"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".MainActivity2Nivel2"
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name=".MainActivity2Nivel1"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT.ACRIVITY"
-                android:value="MainActivity" />
-        </activity>
-        <activity android:name=".MainActivity">
+            android:configChanges="orientation|screenSize" />
+
+        <activity android:name=".MainActivity"
+            android:configChanges="orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
