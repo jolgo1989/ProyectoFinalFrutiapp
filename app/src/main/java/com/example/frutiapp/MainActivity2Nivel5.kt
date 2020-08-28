@@ -140,7 +140,7 @@ class MainActivity2Nivel5 : AppCompatActivity() {
         }
     }
 
-    // Metodo para pasar al siguiente nivel
+    // Metodo para multiplicar
     fun numAleAtorio() {
 
         if (score <= 49) {
